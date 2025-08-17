@@ -25,7 +25,8 @@ void attachInterruptParam(pin_size_t interruptNumber, voidFuncPtrParam callback,
 #if LT_RTL8720C
 	// apparently IRQ can't be used with any kind of pull-up/down
 	// TODO verify if it can be used on AmebaZ
-	pinRemoveMode(pin, PIN_PWM | PIN_GPIO);
+	//pinRemoveMode(pin, PIN_PWM | PIN_GPIO);
+	pinRemoveMode(pin, PIN_PWM);
 #else
 	// GPIO can't be used together with PWM
 	pinRemoveMode(pin, PIN_PWM);
@@ -60,7 +61,8 @@ void attachInterruptParam(pin_size_t interruptNumber, voidFuncPtrParam callback,
 			break;
 		case CHANGE:
 #if LT_RTL8720C
-			event = IRQ_FALL_RISE;
+			//event = IRQ_FALL_RISE;
+			event = IRQ_RISE;
 // Prevents Change interrupt errors on RTL8710B chips.
 #elif LT_RTL8710B
 			event = IRQ_RISE;
