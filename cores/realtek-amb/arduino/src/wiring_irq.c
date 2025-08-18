@@ -5,6 +5,7 @@
 static void gpioIrqHandler(uint32_t id, gpio_irq_event event) {
 	// id is pin data
 	PinData *data = (PinData *)id;
+	LT_W("wiring_irq_c gpioIrqHandler");
 	if (!data->irqHandler)
 		return;
 	if (!data->irqParam)
@@ -63,6 +64,7 @@ void attachInterruptParam(pin_size_t interruptNumber, voidFuncPtrParam callback,
 #if LT_RTL8720C
 			//event = IRQ_FALL_RISE;
 			event = IRQ_RISE;
+			LT_W("LT_RTL8720C IRQ_RISE");
 // Prevents Change interrupt errors on RTL8710B chips.
 #elif LT_RTL8710B
 			event = IRQ_RISE;
