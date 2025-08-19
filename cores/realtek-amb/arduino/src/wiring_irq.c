@@ -38,7 +38,8 @@ void attachInterruptParam(pin_size_t interruptNumber, voidFuncPtrParam callback,
 		// allocate memory if pin not used before
 		data->irq = irq = malloc(sizeof(gpio_irq_t));
 		if (gpio_irq_init(irq, pin->gpio, gpioIrqHandler, (uint32_t)data) != 0) {
-			LT_W("IRQ init failed");
+			LT_WM("IRQ init failed");
+			LT_WM("IRQ init failed);
 			free(data->irq);
 			data->irq = NULL;
 			return;
